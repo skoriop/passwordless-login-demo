@@ -1,0 +1,37 @@
+diff --git a/core/lib/email/signin.js b/core/lib/email/signin.js
+index b7f2cb213a8b0c920c75cb16b152ac985239696b..252ba036694988ed6f2ae6152e7d27036815afe9 100644
+--- a/core/lib/email/signin.js
++++ b/core/lib/email/signin.js
+@@ -9,9 +9,8 @@ var _crypto = require("crypto");
+ 
+ var _utils = require("../utils");
+ 
+-async function email(identifier, options) {
++async function email(identifier, options, p) {
+   var _await$provider$gener, _provider$generateVer, _provider$maxAge, _adapter$createVerifi;
+-
+   const {
+     url,
+     adapter,
+@@ -39,7 +38,7 @@ async function email(identifier, options) {
+     identifier,
+     token: (0, _utils.hashToken)(token, options),
+     expires
+-  })]);
++  }, p)]);
+   return `${url}/verify-request?${new URLSearchParams({
+     provider: provider.id,
+     type: provider.type
+diff --git a/core/routes/callback.js b/core/routes/callback.js
+index d30a999056dfc1a443e09bae904f6ac6b3ea492d..02fd004ad2486bc5eceb60d214cf4c6982eae158 100644
+--- a/core/routes/callback.js
++++ b/core/routes/callback.js
+@@ -231,7 +231,7 @@ async function callback(params) {
+       const invite = await adapter.useVerificationToken({
+         identifier,
+         token: (0, _utils.hashToken)(token, options)
+-      });
++      }, params);
+       const invalidInvite = !invite || invite.expires.valueOf() < Date.now();
+ 
+       if (invalidInvite) {
