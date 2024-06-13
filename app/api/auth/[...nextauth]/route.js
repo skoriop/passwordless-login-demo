@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/prisma";
 import { CustomAdapter } from "@/app/lib/adapter";
 
-const prisma = new PrismaClient();
+export const maxDuration = 60;
 
 async function auth(req, res) {
 	return await NextAuth(req, res, {
