@@ -4,10 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  next-auth@4.24.7:
+    hash: d7r6yqf5zot5bv7kddtmbrzquq
+    path: patches/next-auth@4.24.7.patch
+
 dependencies:
-  '@auth/prisma-adapter':
-    specifier: ^2.2.0
-    version: 2.2.0(@prisma/client@5.15.0)(nodemailer@6.9.13)
+  '@auth/core':
+    specifier: ^0.32.0
+    version: 0.32.0(nodemailer@6.9.13)
   '@prisma/client':
     specifier: 5.15.0
     version: 5.15.0(prisma@5.15.0)
@@ -16,7 +21,7 @@ dependencies:
     version: 14.2.3(react-dom@18.3.1)(react@18.3.1)
   next-auth:
     specifier: ^4.24.7
-    version: 4.24.7(next@14.2.3)(nodemailer@6.9.13)(react-dom@18.3.1)(react@18.3.1)
+    version: 4.24.7(patch_hash=d7r6yqf5zot5bv7kddtmbrzquq)(next@14.2.3)(nodemailer@6.9.13)(react-dom@18.3.1)(react@18.3.1)
   nodemailer:
     specifier: ^6.9.13
     version: 6.9.13
@@ -67,19 +72,6 @@ packages:
       oauth4webapi: 2.10.4
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
-    dev: false
-
-  /@auth/prisma-adapter@2.2.0(@prisma/client@5.15.0)(nodemailer@6.9.13):
-    resolution: {integrity: sha512-DiXgyJfqBb/6TPhNJ5IcRw3klxcFD+qaa7qvOYopV6rYinSUvsQkJ30m+so2SRlEsuDA6PqMu+Mf5Sd+zr3g+Q==}
-    peerDependencies:
-      '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5'
-    dependencies:
-      '@auth/core': 0.32.0(nodemailer@6.9.13)
-      '@prisma/client': 5.15.0(prisma@5.15.0)
-    transitivePeerDependencies:
-      - '@simplewebauthn/browser'
-      - '@simplewebauthn/server'
-      - nodemailer
     dev: false
 
   /@babel/runtime@7.24.7:
@@ -676,7 +668,7 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /next-auth@4.24.7(next@14.2.3)(nodemailer@6.9.13)(react-dom@18.3.1)(react@18.3.1):
+  /next-auth@4.24.7(patch_hash=d7r6yqf5zot5bv7kddtmbrzquq)(next@14.2.3)(nodemailer@6.9.13)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-iChjE8ov/1K/z98gdKbn2Jw+2vLgJtVV39X+rCP5SGnVQuco7QOr19FRNGMIrD8d3LYhHWV9j9sKLzq1aDWWQQ==}
     peerDependencies:
       next: ^12.2.5 || ^13 || ^14
@@ -701,6 +693,7 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
       uuid: 8.3.2
     dev: false
+    patched: true
 
   /next@14.2.3(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
